@@ -18,8 +18,12 @@ class Camera
 {   
     public:
         glm::vec3 Position;
-        glm::vec3 Direction = glm::vec3(0.0f, 0.0f, 0.0f);
         glm::vec3 Orientation = glm::vec3(0.0f, 0.0f, -1.0f);
+        glm::vec3 WorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
+        glm::vec3 Right = normalize(cross(Orientation, WorldUp));
+        glm::vec3 Up = cross(Right, Orientation);
+
+        glm::mat3 CameraToWorld = glm::mat3(Right, Up, Orientation);
 
         bool firstClick = true;
 
@@ -28,7 +32,7 @@ class Camera
 
         float yaw = 0.0f; // Horizontal angle
         float pitch = 0.0f; // Vertical angle
-        float speed = 1.0f;
+        float speed = 0.3f;
         float sensitivity = 0.1f;
 
         BufferType activeBuffer = FINAL; 

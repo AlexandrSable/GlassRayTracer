@@ -14,6 +14,12 @@
                 "${workspaceFolder}/src/main.cpp",
                 "${workspaceFolder}/src/glad.c",
                 "${workspaceFolder}/src/glTFLoader.cpp",
+                "${workspaceFolder}/include/imgui/imgui.cpp",
+                "${workspaceFolder}/include/imgui/imgui_draw.cpp",
+                "${workspaceFolder}/include/imgui/imgui_tables.cpp",
+                "${workspaceFolder}/include/imgui/imgui_widgets.cpp",
+                "${workspaceFolder}/include/imgui/imgui_impl_glfw.cpp",
+                "${workspaceFolder}/include/imgui/imgui_impl_opengl3.cpp",
                 "-lglfw3dll",
                 "-o",
                 "${workspaceFolder}/cutable.exe"

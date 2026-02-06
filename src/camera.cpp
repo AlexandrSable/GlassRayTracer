@@ -65,15 +65,16 @@ void Camera::ProcessInputs(GLFWwindow *window, int width, int height)
         yaw += xOffset;
         pitch = glm::clamp(pitch + yOffset, -89.5f, 89.5f);
 
-        Direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-        Direction.y = sin(glm::radians(pitch));
-        Direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+        Orientation.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+        Orientation.y = sin(glm::radians(pitch));
+        Orientation.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 
-        Orientation = glm::normalize(Direction);
+        Orientation = normalize(Orientation);
 
-                                                // glm::vec3(-sin(glm::radians(yaw)), 
-                                                // sin(glm::radians(pitch)), 
-                                                // cos(glm::radians(pitch)) * cos(glm::radians(yaw))));
+        Right = normalize(cross(Orientation, WorldUp));
+        Up = cross(Right, Orientation);
+        
+        CameraToWorld = glm::mat3(Right, Up, Orientation);
 
         glfwSetCursorPos(window, (width / 2), (height / 2));
     }
